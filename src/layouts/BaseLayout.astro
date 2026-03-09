@@ -61,6 +61,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://hailth.c
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "HAILTH",
+        "url": "https://hailth.com",
+        "logo": "/og-image.jpg"
+      }
+    </script>
+
+    <slot name="head" />
   </head>
 
   <body>

@@ -13,6 +13,30 @@ import Newsletter from "../components/Newsletter.astro";
   title="HAILTH Tactical Metal Hook Elastic Belt | Shop Now"
   description="Shop the HAILTH Tactical Metal Hook Elastic Belt. Military-grade zinc alloy buckle, infinite adjustability, ultra-light at 120g. Free shipping. 30-day returns."
 >
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "HAILTH Tactical Metal Hook Elastic Belt",
+      "description": "Military-grade zinc alloy buckle, infinite adjustability, ultra-light at 120g. Airport-safe, no holes, fits 28-50 inch waist.",
+      "image": "/images/product/belt-black-front.jpg",
+      "brand": { "@type": "Brand", "name": "HAILTH" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://hailth.com/product",
+        "priceCurrency": "USD",
+        "price": "29.99",
+        "priceValidUntil": "2027-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@type": "Organization", "name": "HAILTH" }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "847"
+      }
+    }
+  </script>
   <!-- Product hero banner -->
   <section class="product-hero">
     <div class="container-content">
