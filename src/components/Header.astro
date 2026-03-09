@@ -363,6 +363,8 @@
 </style>
 
 <script>
+  import { getCart } from '../lib/api';
+
   function updateCartBadge(count: number) {
     const badge = document.getElementById('cart-count');
     if (!badge) return;
@@ -380,8 +382,7 @@
       updateCartBadge(0);
       return;
     }
-    fetch(`http://localhost:4322/api/cart/${sid}`)
-      .then(r => r.ok ? r.json() : null)
+    getCart(sid)
       .then(cart => updateCartBadge(cart ? cart.itemCount : 0))
       .catch(() => updateCartBadge(0));
   }

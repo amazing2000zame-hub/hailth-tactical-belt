@@ -221,6 +221,8 @@
 </style>
 
 <script>
+  import { subscribeNewsletter } from '../lib/api';
+
   const form = document.getElementById('newsletter-form') as HTMLFormElement;
   const statusEl = document.getElementById('newsletter-status') as HTMLParagraphElement;
   const btn = document.getElementById('newsletter-btn') as HTMLButtonElement;
@@ -235,14 +237,8 @@
     statusEl.style.display = 'none';
 
     try {
-      const res = await fetch('http://localhost:4322/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const body = await res.json();
-      statusEl.textContent = body.message || 'Subscribed successfully!';
+      const result = await subscribeNewsletter(email);
+      statusEl.textContent = result.message || 'Subscribed successfully!';
       statusEl.className = 'newsletter__status newsletter__status--success';
       statusEl.style.display = '';
       form.reset();

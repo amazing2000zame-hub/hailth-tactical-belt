@@ -3,7 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_PATH = path.join(__dirname, 'hailth.db');
+const DB_DIR = process.env.DB_DIR || __dirname;
+const DB_PATH = path.join(DB_DIR, 'hailth.db');
 
 let db;
 

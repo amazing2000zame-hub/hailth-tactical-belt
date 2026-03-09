@@ -71,6 +71,8 @@ import CartPage from "../components/CartPage.tsx";
 </BaseLayout>
 
 <script>
+  import { getCart } from '../lib/api';
+
   // Toggle empty state based on cart content
   function updateEmptyState() {
     const empty = document.getElementById('cart-empty');
@@ -79,9 +81,7 @@ import CartPage from "../components/CartPage.tsx";
       if (empty) empty.style.display = '';
       return;
     }
-    // Check the API for cart items
-    fetch(`http://localhost:4322/api/cart/${sid}`)
-      .then(r => r.ok ? r.json() : null)
+    getCart(sid)
       .then(cart => {
         if (empty) {
           empty.style.display = (cart && cart.itemCount > 0) ? 'none' : '';

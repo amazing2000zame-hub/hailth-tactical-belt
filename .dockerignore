@@ -1,0 +1,12 @@
+node_modules
+src
+.git
+.gitignore
+.astro
+.env
+server/.env
+server/hailth.db
+server/hailth.db-shm
+server/hailth.db-wal
+*.md
+.planning

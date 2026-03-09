@@ -1,0 +1,27 @@
+services:
+  hailth-store:
+    build: .
+    container_name: hailth-store
+    restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "4321:4321"
+    environment:
+      - PORT=4321
+      - STATIC_DIR=../dist
+      - NODE_ENV=production
+      - DB_DIR=/app/data
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET:-}
+    volumes:
+      - hailth-data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4321/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+volumes:
+  hailth-data:
