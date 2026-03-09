@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Privacy Policy | HAILTH"
+  description="HAILTH privacy policy. Learn how we collect, use, and protect your personal information."
+>
+  <section class="policy-page">
+    <div class="container-narrow">
+      <nav class="policy-page__breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Privacy Policy</span>
+      </nav>
+
+      <h1 class="policy-page__title">Privacy Policy</h1>
+      <p class="policy-page__updated">Last updated: March 9, 2026</p>
+
+      <div class="policy-page__content">
+        <h2>1. Information We Collect</h2>
+        <p>When you make a purchase or interact with our store, we collect information necessary to fulfill your order:</p>
+        <ul>
+          <li><strong>Order Information:</strong> Name, email address, shipping address, and payment details (processed securely by Stripe)</li>
+          <li><strong>Communication:</strong> Email address when you subscribe to our newsletter or contact support</li>
+          <li><strong>Usage Data:</strong> Anonymous analytics about how you browse our site (pages visited, time on site)</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+        <ul>
+          <li>Process and fulfill your orders</li>
+          <li>Send order confirmation and shipping updates</li>
+          <li>Respond to customer support inquiries</li>
+          <li>Send marketing emails (only with your consent, unsubscribe anytime)</li>
+          <li>Improve our website and product offerings</li>
+        </ul>
+
+        <h2>3. Payment Security</h2>
+        <p>All payments are processed through Stripe, a PCI DSS Level 1 certified payment processor. We never store, process, or have access to your full credit card details. Your payment information goes directly to Stripe's secure servers.</p>
+
+        <h2>4. Data Sharing</h2>
+        <p>We do not sell, trade, or rent your personal information. We share data only with:</p>
+        <ul>
+          <li><strong>Stripe:</strong> For payment processing</li>
+          <li><strong>Shipping carriers:</strong> Name and address for order delivery</li>
+          <li><strong>Email service:</strong> For order notifications and marketing (with consent)</li>
+        </ul>
+
+        <h2>5. Cookies</h2>
+        <p>Our site uses minimal cookies for essential functionality (cart state, session). We use privacy-respecting analytics that do not track you across websites.</p>
+
+        <h2>6. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Access the personal data we hold about you</li>
+          <li>Request correction or deletion of your data</li>
+          <li>Unsubscribe from marketing emails at any time</li>
+          <li>Request a copy of your data in a portable format</li>
+        </ul>
+
+        <h2>7. Contact Us</h2>
+        <p>For privacy-related questions or requests, contact us at:</p>
+        <p><strong>Email:</strong> support@hailth.com</p>
+
+        <h2>8. Changes to This Policy</h2>
+        <p>We may update this policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .policy-page {
+    padding: 2rem 0 6rem;
+  }
+
+  .policy-page__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-hailth-gray-300);
+    margin-bottom: 2rem;
+  }
+
+  .policy-page__breadcrumb a {
+    color: var(--color-hailth-gray-300);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .policy-page__breadcrumb a:hover {
+    color: var(--color-hailth-gray-500);
+  }
+
+  .policy-page__breadcrumb span:last-child {
+    color: var(--color-hailth-gray-500);
+  }
+
+  .policy-page__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-page__updated {
+    font-size: 0.8125rem;
+    color: var(--color-hailth-gray-300);
+    margin-bottom: 3rem;
+  }
+
+  .policy-page__content h2 {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .policy-page__content p {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: var(--color-hailth-gray-400);
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+
+  .policy-page__content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .policy-page__content li {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: var(--color-hailth-gray-400);
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-page__content li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-hailth-gray-200);
+  }
+
+  .policy-page__content strong {
+    color: var(--color-hailth-gray-500);
+    font-weight: 600;
+  }
+</style>

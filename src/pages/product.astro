@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TrustBadges from "../components/TrustBadges.astro";
+import ProductSection from "../components/ProductSection.astro";
+import Features from "../components/Features.astro";
+import Comparison from "../components/Comparison.astro";
+import Reviews from "../components/Reviews.astro";
+import FAQ from "../components/FAQ.astro";
+import Newsletter from "../components/Newsletter.astro";
+---
+
+<BaseLayout
+  title="HAILTH Tactical Metal Hook Elastic Belt | Shop Now"
+  description="Shop the HAILTH Tactical Metal Hook Elastic Belt. Military-grade zinc alloy buckle, infinite adjustability, ultra-light at 120g. Free shipping. 30-day returns."
+>
+  <!-- Product hero banner -->
+  <section class="product-hero">
+    <div class="container-content">
+      <nav class="product-hero__breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Tactical Belt</span>
+      </nav>
+    </div>
+  </section>
+
+  <ProductSection />
+  <TrustBadges />
+  <Features />
+  <Comparison />
+  <Reviews />
+  <FAQ />
+  <Newsletter />
+</BaseLayout>
+
+<style>
+  .product-hero {
+    padding: 2rem 0 0;
+    background: var(--color-hailth-white);
+  }
+
+  .product-hero__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-hailth-gray-300);
+  }
+
+  .product-hero__breadcrumb a {
+    color: var(--color-hailth-gray-300);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .product-hero__breadcrumb a:hover {
+    color: var(--color-hailth-gray-500);
+  }
+
+  .product-hero__breadcrumb span:last-child {
+    color: var(--color-hailth-gray-500);
+  }
+</style>

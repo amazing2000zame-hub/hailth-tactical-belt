@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FAQ from "../components/FAQ.astro";
+import Newsletter from "../components/Newsletter.astro";
+---
+
+<BaseLayout
+  title="FAQ | HAILTH Tactical Belt"
+  description="Frequently asked questions about the HAILTH Tactical Belt. Learn about sizing, shipping, returns, materials, and more."
+>
+  <!-- Page header -->
+  <section class="faq-page-header">
+    <div class="container-narrow">
+      <nav class="faq-page-header__breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>FAQ</span>
+      </nav>
+    </div>
+  </section>
+
+  <FAQ />
+  <Newsletter />
+</BaseLayout>
+
+<style>
+  .faq-page-header {
+    padding: 2rem 0 0;
+    background: var(--color-hailth-white);
+  }
+
+  .faq-page-header__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-hailth-gray-300);
+  }
+
+  .faq-page-header__breadcrumb a {
+    color: var(--color-hailth-gray-300);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .faq-page-header__breadcrumb a:hover {
+    color: var(--color-hailth-gray-500);
+  }
+
+  .faq-page-header__breadcrumb span:last-child {
+    color: var(--color-hailth-gray-500);
+  }
+</style>
