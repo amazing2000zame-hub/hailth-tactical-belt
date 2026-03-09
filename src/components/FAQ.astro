@@ -1,0 +1,189 @@
+---
+/**
+ * FAQ Section
+ * CSS-only accordion using details/summary elements.
+ * 10 common questions covering sizing, shipping, returns, materials, etc.
+ */
+
+const faqs = [
+  {
+    question: "How do I choose the right size?",
+    answer: "Our belt fits waist sizes 28\" to 50\" with a single strap. Simply measure your waist at the point where you normally wear a belt. The elastic webbing and metal hook system gives you infinite positions within the full range, so there's no guesswork with belt holes. If needed, you can trim the strap to your preferred length using regular scissors.",
+  },
+  {
+    question: "How long does shipping take?",
+    answer: "Standard shipping takes 7-15 business days depending on your location. Orders are processed within 1-3 business days. We also offer DHL Express shipping at checkout for faster delivery (typically 3-5 business days). All orders include free standard shipping worldwide.",
+  },
+  {
+    question: "What is your return policy?",
+    answer: "We offer a 30-day hassle-free return policy. If you're not completely satisfied with your belt, you can return it within 30 days of delivery for a full refund. The belt must be in its original condition and packaging. Simply contact us at support@hailth.com to initiate a return, and we'll provide a prepaid shipping label.",
+  },
+  {
+    question: "What material is the belt made from?",
+    answer: "The strap is made from high-density elastic polyester and nylon -- the same materials used in tactical gear and premium luggage. The buckle is a zinc alloy with metal hook for secure locking. All hardware is rated for 150+ lbs of tensile strength and operates in temperatures from -20 to 60 degrees Celsius.",
+  },
+  {
+    question: "Will this set off airport metal detectors?",
+    answer: "The HAILTH belt is designed to be travel-friendly. The zinc alloy buckle is minimal and low-profile, falling below typical TSA detection thresholds. Many of our customers wear their belts through airport security daily without issues. No more unbuckling at the checkpoint.",
+  },
+  {
+    question: "How do I care for my belt?",
+    answer: "The HAILTH belt is extremely low-maintenance. For daily cleaning, simply wipe the strap with a damp cloth. For deeper cleaning, hand wash with mild soap and warm water, then air dry. Do not machine wash or use bleach. The buckle can be wiped with a dry cloth. The nylon is naturally resistant to moisture, mildew, and UV fading.",
+  },
+  {
+    question: "Can I trim the belt to my exact size?",
+    answer: "Yes. The belt comes at full length (fits up to 50\" waist) and is designed to be trimmed. Simply measure, mark, and cut the strap with regular scissors or a utility knife. We include trimming instructions with every order. Once cut, the end threads can be sealed with a lighter flame for a clean finish.",
+  },
+  {
+    question: "Is this belt suitable for formal wear?",
+    answer: "Absolutely. The HAILTH belt has a clean, minimal profile that works with everything from jeans to dress pants. The matte buckle is understated and professional -- it looks like a premium dress belt, not tactical gear. Many of our customers wear it to the office and business meetings daily.",
+  },
+  {
+    question: "How does the hook buckle work?",
+    answer: "The buckle uses a metal hook and loop system. Thread the strap through and the elastic webbing grips at any position -- giving you infinite adjustability without holes. To release, simply unhook and the strap slides free. It's intuitive, secure, and can be operated with one hand.",
+  },
+  {
+    question: "Do you offer a warranty?",
+    answer: "Yes. Every HAILTH belt comes with a 1-year warranty covering manufacturing defects in materials and workmanship. This includes buckle mechanism failure, premature strap fraying, and hardware loosening. Normal wear and tear from extended use is not covered. Contact support@hailth.com with your order number for warranty claims.",
+  },
+];
+---
+
+<section id="faq" class="section">
+  <div class="container-narrow">
+    <!-- Header -->
+    <div class="text-center mb-16 lg:mb-20">
+      <h6 class="fade-in text-hailth-gold-dark !text-hailth-gold-dark">Support</h6>
+      <h2 class="fade-in fade-in-delay-1 mt-4">
+        Frequently Asked<br />
+        <span class="text-gradient-gold">Questions</span>
+      </h2>
+      <p class="fade-in fade-in-delay-2 mt-6 text-base lg:text-lg mx-auto">
+        Everything you need to know about the HAILTH Tactical Belt.
+      </p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="faq__list fade-in fade-in-delay-3">
+      {faqs.map((faq) => (
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span class="faq__question-text">{faq.question}</span>
+            <span class="faq__toggle">
+              <svg class="faq__toggle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </span>
+          </summary>
+          <div class="faq__answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="fade-in fade-in-delay-4 mt-12 text-center">
+      <p class="text-sm mx-auto" style="color: var(--color-hailth-gray-400);">
+        Still have questions?
+        <a href="/contact" class="faq__contact-link">Get in touch</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- List ---- */
+  .faq__list {
+    border-top: 1px solid var(--color-hailth-gray-200);
+  }
+
+  /* ---- Item ---- */
+  .faq__item {
+    border-bottom: 1px solid var(--color-hailth-gray-200);
+  }
+
+  .faq__item[open] .faq__toggle-icon {
+    transform: rotate(45deg);
+    color: var(--color-hailth-white);
+  }
+
+  .faq__item[open] .faq__toggle {
+    background: var(--color-hailth-black);
+  }
+
+  /* ---- Question (summary) ---- */
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
+    padding: 1.5rem 0;
+    transition: color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__question-text {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-hailth-black);
+    padding-right: 2rem;
+    line-height: 1.5;
+    transition: color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .faq__question:hover .faq__question-text {
+    color: var(--color-hailth-gray-500);
+  }
+
+  /* ---- Toggle icon ---- */
+  .faq__toggle {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-hailth-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--duration-normal) var(--ease-smooth);
+  }
+
+  .faq__toggle-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-hailth-gray-400);
+    transition: transform var(--duration-normal) var(--ease-smooth),
+                color var(--duration-normal) var(--ease-smooth);
+  }
+
+  /* ---- Answer ---- */
+  .faq__answer {
+    padding: 0 3rem 1.5rem 0;
+  }
+
+  .faq__answer p {
+    font-size: 0.875rem;
+    line-height: 1.8;
+    color: var(--color-hailth-gray-400);
+    max-width: none;
+  }
+
+  /* ---- Contact Link ---- */
+  .faq__contact-link {
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .faq__contact-link:hover {
+    color: var(--color-hailth-gold);
+  }
+</style>

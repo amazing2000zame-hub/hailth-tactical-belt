@@ -1,0 +1,363 @@
+---
+/**
+ * Header Component
+ * Sticky frosted-glass header with navigation and cart icon.
+ * Mobile: CSS-only hamburger menu with full-screen overlay.
+ */
+---
+
+<header class="header glass" id="site-header">
+  <div class="header__inner container-content">
+    <!-- Logo -->
+    <a href="/" class="header__logo" aria-label="HAILTH Home">
+      HAILTH
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="header__nav" aria-label="Main navigation">
+      <a href="/" class="header__link">Home</a>
+      <a href="/product" class="header__link">Product</a>
+      <a href="/about" class="header__link">About</a>
+      <a href="/faq" class="header__link">FAQ</a>
+    </nav>
+
+    <!-- Cart & Mobile Toggle -->
+    <div class="header__actions">
+      <!-- Cart Icon -->
+      <a href="/cart" class="header__cart" aria-label="Shopping cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="header__cart-count" id="cart-count" style="display: none;">0</span>
+      </a>
+
+      <!-- Mobile Menu Toggle (CSS-only) -->
+      <input
+        type="checkbox"
+        id="mobile-menu-toggle"
+        class="header__toggle-input"
+        aria-label="Toggle mobile menu"
+      />
+      <label for="mobile-menu-toggle" class="header__toggle" aria-hidden="true">
+        <span class="header__toggle-bar"></span>
+        <span class="header__toggle-bar"></span>
+        <span class="header__toggle-bar"></span>
+      </label>
+
+      <!-- Mobile Menu Overlay -->
+      <div class="header__mobile-overlay">
+        <nav class="header__mobile-nav" aria-label="Mobile navigation">
+          <a href="/" class="header__mobile-link">Home</a>
+          <a href="/product" class="header__mobile-link">Product</a>
+          <a href="/about" class="header__mobile-link">About</a>
+          <a href="/faq" class="header__mobile-link">FAQ</a>
+          <div class="header__mobile-divider"></div>
+          <a href="/cart" class="header__mobile-link header__mobile-link--cart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            Cart
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Spacer to prevent content from hiding behind fixed header -->
+<div class="header__spacer"></div>
+
+<style>
+  /* ---- Header Shell ---- */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-header);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transition: background var(--duration-normal) var(--ease-smooth),
+                border-color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .header__spacer {
+    height: 64px;
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  /* ---- Logo ---- */
+  .header__logo {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--color-hailth-black);
+    text-decoration: none;
+    transition: opacity var(--duration-normal) var(--ease-smooth);
+    flex-shrink: 0;
+  }
+
+  .header__logo:hover {
+    opacity: 0.7;
+    color: var(--color-hailth-black);
+  }
+
+  /* ---- Desktop Nav ---- */
+  .header__nav {
+    display: none;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .header__nav {
+      display: flex;
+    }
+  }
+
+  .header__link {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-hailth-gray-500);
+    text-decoration: none;
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .header__link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-hailth-gold);
+    transition: width var(--duration-normal) var(--ease-smooth);
+  }
+
+  .header__link:hover {
+    color: var(--color-hailth-black);
+  }
+
+  .header__link:hover::after {
+    width: 100%;
+  }
+
+  /* ---- Actions (Cart + Hamburger) ---- */
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* ---- Cart Icon ---- */
+  .header__cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--color-hailth-black);
+    border-radius: 50%;
+    transition: background var(--duration-normal) var(--ease-smooth),
+                color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .header__cart:hover {
+    background: var(--color-hailth-gray-50);
+    color: var(--color-hailth-black);
+  }
+
+  .header__cart-count {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    background-color: var(--color-hailth-gold);
+    color: var(--color-hailth-black);
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    border-radius: var(--radius-pill);
+  }
+
+  /* ---- Mobile Toggle ---- */
+  .header__toggle-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .header__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    gap: 5px;
+    border-radius: 50%;
+    transition: background var(--duration-normal) var(--ease-smooth);
+    z-index: calc(var(--z-overlay) + 1);
+    position: relative;
+  }
+
+  .header__toggle:hover {
+    background: var(--color-hailth-gray-50);
+  }
+
+  @media (min-width: 768px) {
+    .header__toggle {
+      display: none;
+    }
+  }
+
+  .header__toggle-bar {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background-color: var(--color-hailth-black);
+    border-radius: 1px;
+    transition: transform var(--duration-normal) var(--ease-smooth),
+                opacity var(--duration-normal) var(--ease-smooth);
+    transform-origin: center;
+  }
+
+  /* Hamburger -> X animation */
+  .header__toggle-input:checked ~ .header__toggle .header__toggle-bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .header__toggle-input:checked ~ .header__toggle .header__toggle-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .header__toggle-input:checked ~ .header__toggle .header__toggle-bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* ---- Mobile Overlay ---- */
+  .header__mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(250, 250, 250, 0.97);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    z-index: var(--z-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--duration-slow) var(--ease-smooth),
+                visibility var(--duration-slow) var(--ease-smooth);
+  }
+
+  .header__toggle-input:checked ~ .header__mobile-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (min-width: 768px) {
+    .header__mobile-overlay {
+      display: none !important;
+    }
+  }
+
+  .header__mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .header__mobile-link {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--color-hailth-black);
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    transition: color var(--duration-normal) var(--ease-smooth),
+                opacity var(--duration-normal) var(--ease-smooth);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .header__toggle-input:checked ~ .header__mobile-overlay .header__mobile-link {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity var(--duration-slow) var(--ease-smooth),
+                transform var(--duration-slow) var(--ease-smooth),
+                color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .header__toggle-input:checked ~ .header__mobile-overlay .header__mobile-link:nth-child(1) {
+    transition-delay: 100ms, 100ms, 0ms;
+  }
+  .header__toggle-input:checked ~ .header__mobile-overlay .header__mobile-link:nth-child(2) {
+    transition-delay: 175ms, 175ms, 0ms;
+  }
+  .header__toggle-input:checked ~ .header__mobile-overlay .header__mobile-link:nth-child(3) {
+    transition-delay: 250ms, 250ms, 0ms;
+  }
+  .header__toggle-input:checked ~ .header__mobile-overlay .header__mobile-link:nth-child(4) {
+    transition-delay: 325ms, 325ms, 0ms;
+  }
+  .header__toggle-input:checked ~ .header__mobile-overlay .header__mobile-link:nth-child(6) {
+    transition-delay: 425ms, 425ms, 0ms;
+  }
+
+  .header__mobile-link:hover {
+    color: var(--color-hailth-gold);
+  }
+
+  .header__mobile-link--cart {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-hailth-gray-400);
+  }
+
+  .header__mobile-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--color-hailth-gray-200);
+    margin: 1.5rem 0;
+  }
+</style>

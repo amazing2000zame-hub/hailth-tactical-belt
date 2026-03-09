@@ -1,0 +1,293 @@
+---
+/**
+ * Contact Page
+ * Two-column layout: company info + contact form.
+ * Subject dropdown, textarea, accessible labels.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact Us | HAILTH" description="Get in touch with the HAILTH team. We respond to all inquiries within 24 hours.">
+
+  <section class="section">
+    <div class="container-content">
+
+      <div class="contact__grid">
+        <!-- Left: Info -->
+        <div class="contact__info">
+          <h6 class="fade-in text-hailth-gold-dark !text-hailth-gold-dark">Get in Touch</h6>
+          <h1 class="fade-in fade-in-delay-1 mt-4 contact__heading">
+            We'd love to hear from you.
+          </h1>
+          <p class="fade-in fade-in-delay-2 mt-6 contact__subtitle">
+            Whether you have a question about sizing, need help with an order, or just want to say hello -- our team is here for you.
+          </p>
+
+          <div class="fade-in fade-in-delay-3 contact__details">
+            <!-- Email -->
+            <div class="contact__detail-row">
+              <div class="contact__detail-icon-wrap">
+                <svg class="contact__detail-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact__detail-label">Email</p>
+                <a href="mailto:support@hailth.com" class="contact__detail-value">support@hailth.com</a>
+              </div>
+            </div>
+
+            <!-- Response Time -->
+            <div class="contact__detail-row">
+              <div class="contact__detail-icon-wrap">
+                <svg class="contact__detail-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact__detail-label">Response Time</p>
+                <p class="contact__detail-text">We respond to all inquiries within 24 hours</p>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="contact__detail-row">
+              <div class="contact__detail-icon-wrap">
+                <svg class="contact__detail-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact__detail-label">Business Hours</p>
+                <p class="contact__detail-text">Monday - Friday, 9am - 6pm EST</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact__form-wrap fade-in fade-in-delay-2">
+          <form action="#" method="POST" class="contact__form">
+            <!-- Name -->
+            <div class="contact__field">
+              <label for="contact-name" class="contact__label">Name</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                required
+                placeholder="Your name"
+                class="contact__input"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="contact__field">
+              <label for="contact-email" class="contact__label">Email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                required
+                placeholder="you@example.com"
+                class="contact__input"
+              />
+            </div>
+
+            <!-- Subject -->
+            <div class="contact__field">
+              <label for="contact-subject" class="contact__label">Subject</label>
+              <select id="contact-subject" name="subject" class="contact__input contact__select">
+                <option value="">Select a topic</option>
+                <option value="order">Order inquiry</option>
+                <option value="sizing">Sizing help</option>
+                <option value="return">Return or exchange</option>
+                <option value="warranty">Warranty claim</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div class="contact__field">
+              <label for="contact-message" class="contact__label">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                required
+                rows="5"
+                placeholder="How can we help?"
+                class="contact__input contact__textarea"
+              ></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="contact__submit btn-primary">
+              Send Message
+            </button>
+
+            <p class="contact__note">
+              We'll get back to you within 24 hours. For urgent orders, include your order number.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ---- Grid Layout ---- */
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1024px) {
+    .contact__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+  }
+
+  /* ---- Info Column ---- */
+  .contact__heading {
+    font-size: clamp(2rem, 4vw + 0.5rem, 3rem);
+    line-height: 1.1;
+    max-width: 400px;
+  }
+
+  .contact__subtitle {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-hailth-gray-400);
+    max-width: none;
+  }
+
+  .contact__details {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact__detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact__detail-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--color-hailth-gray-50);
+    border: 1px solid var(--color-hailth-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact__detail-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-hailth-gray-500);
+  }
+
+  .contact__detail-label {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    max-width: none;
+  }
+
+  .contact__detail-value {
+    font-size: 0.8125rem;
+    color: var(--color-hailth-gray-400);
+    text-decoration: none;
+    transition: color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .contact__detail-value:hover {
+    color: var(--color-hailth-gold);
+  }
+
+  .contact__detail-text {
+    font-size: 0.8125rem;
+    color: var(--color-hailth-gray-400);
+    max-width: none;
+  }
+
+  /* ---- Form ---- */
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact__label {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-hailth-black);
+  }
+
+  .contact__input {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--color-hailth-white);
+    border: 1.5px solid var(--color-hailth-gray-200);
+    color: var(--color-hailth-black);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    outline: none;
+    transition: all var(--duration-normal) var(--ease-smooth);
+  }
+
+  .contact__input::placeholder {
+    color: var(--color-hailth-gray-300);
+  }
+
+  .contact__input:focus {
+    border-color: var(--color-hailth-gold);
+    box-shadow: 0 0 0 3px rgba(200, 169, 126, 0.15);
+  }
+
+  .contact__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.25rem center;
+    padding-right: 3rem;
+    cursor: pointer;
+  }
+
+  .contact__textarea {
+    resize: none;
+    min-height: 140px;
+  }
+
+  .contact__submit {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .contact__note {
+    font-size: 0.75rem;
+    color: var(--color-hailth-gray-300);
+    text-align: center;
+    max-width: none;
+  }
+</style>

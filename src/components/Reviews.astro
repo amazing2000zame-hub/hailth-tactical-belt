@@ -1,0 +1,361 @@
+---
+/**
+ * Reviews Section
+ * Customer testimonials with star ratings, verified badges, and
+ * overall rating breakdown. Builds trust and social proof.
+ */
+
+const reviews = [
+  {
+    name: "Marcus T.",
+    rating: 5,
+    date: "February 14, 2026",
+    verified: true,
+    title: "Replaced all my leather belts",
+    text: "I've worn leather belts my entire adult life and always dealt with the same problems -- cracking after a year, limited hole options, uncomfortable when sitting for long periods. This belt solved every one of those issues. The elastic hook system lets me find the exact tension I want, and it doesn't dig into my side when I'm at my desk. Three months in and it still looks brand new.",
+    helpful: 47,
+  },
+  {
+    name: "Sarah K.",
+    rating: 5,
+    date: "January 28, 2026",
+    verified: true,
+    title: "Genuinely comfortable for all-day wear",
+    text: "I'm a nurse and I'm on my feet 12+ hours a shift. My old belt would leave red marks on my hips by hour six. This one? I honestly forget I'm wearing it. The material has some give to it without being floppy, and the buckle is so flat it doesn't press into my stomach when I lean against counters. Already ordered a second one in olive.",
+    helpful: 83,
+  },
+  {
+    name: "James R.",
+    rating: 5,
+    date: "February 3, 2026",
+    verified: true,
+    title: "Perfect for travel",
+    text: "Flew from JFK to Tokyo last month and this belt went through TSA and Narita security without a beep. No more holding up the line fumbling with a metal buckle. The hook release is satisfying to use and the whole thing rolls up smaller than my socks for packing. Looks sharp enough for business meetings too.",
+    helpful: 61,
+  },
+  {
+    name: "David L.",
+    rating: 4,
+    date: "January 15, 2026",
+    verified: true,
+    title: "Great belt, wish I'd found it sooner",
+    text: "The adjustability is the real selling point here. I fluctuate about 10 lbs through the year and leather belts always end up on the wrong hole. With this I just adjust the hook and it's perfect every time. Took one star off because the color was slightly lighter than the photos, but it's still a sharp-looking belt. Would buy again.",
+    helpful: 34,
+  },
+  {
+    name: "Rachel M.",
+    rating: 5,
+    date: "February 21, 2026",
+    verified: true,
+    title: "Bought for my husband, now I want one",
+    text: "Got this as a birthday gift for my husband who destroys belts. He works construction and goes through two leather belts a year. He's been wearing this daily for about six weeks and it shows zero wear. The edges aren't fraying, the buckle still clicks tight, and he says it's the most comfortable belt he's owned. Now I need to find out if you make women's sizes.",
+    helpful: 92,
+  },
+  {
+    name: "Chris W.",
+    rating: 5,
+    date: "March 1, 2026",
+    verified: true,
+    title: "Worth every penny",
+    text: "I was skeptical about spending this much on an elastic belt when I can get a leather one for less. But after wearing it daily for two months, I get it. The build quality is noticeably better than anything I've owned -- the stitching is tight, the zinc alloy hook is smooth, and the material feels substantial without being heavy. This is the kind of product where you pay more upfront and never have to buy another one.",
+    helpful: 56,
+  },
+];
+
+const overallRating = 4.8;
+const totalReviews = 2847;
+const ratingBreakdown = [
+  { stars: 5, percentage: 82 },
+  { stars: 4, percentage: 12 },
+  { stars: 3, percentage: 4 },
+  { stars: 2, percentage: 1 },
+  { stars: 1, percentage: 1 },
+];
+---
+
+<section id="reviews" class="section">
+  <div class="container-content">
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+      <h6 class="fade-in text-hailth-gold-dark !text-hailth-gold-dark">Reviews</h6>
+      <h2 class="fade-in fade-in-delay-1 mt-4">
+        What Our Customers<br />
+        <span class="text-gradient-gold">Actually Say</span>
+      </h2>
+      <div class="fade-in fade-in-delay-2 mt-8 flex items-center justify-center gap-3">
+        <div class="reviews__stars">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <svg class={`reviews__star ${i < Math.floor(overallRating) ? 'reviews__star--filled' : ''}`} fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
+        </div>
+        <span class="reviews__rating-number">{overallRating}</span>
+        <span class="reviews__rating-count">from {totalReviews.toLocaleString()} reviews</span>
+      </div>
+    </div>
+
+    <!-- Rating Breakdown -->
+    <div class="reviews__breakdown fade-in fade-in-delay-3">
+      {ratingBreakdown.map((item) => (
+        <div class="reviews__bar-row">
+          <span class="reviews__bar-label">{item.stars} star</span>
+          <div class="reviews__bar-track">
+            <div class="reviews__bar-fill" style={`width: ${item.percentage}%`}></div>
+          </div>
+          <span class="reviews__bar-pct">{item.percentage}%</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="reviews__grid">
+      {reviews.map((review, i) => (
+        <div class={`reviews__card fade-in fade-in-delay-${(i % 4) + 1}`}>
+          <!-- Stars -->
+          <div class="reviews__card-stars">
+            {Array.from({ length: 5 }).map((_, j) => (
+              <svg class={`reviews__star-sm ${j < review.rating ? 'reviews__star-sm--filled' : ''}`} fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+
+          <!-- Title -->
+          <h4 class="reviews__card-title">{review.title}</h4>
+
+          <!-- Text -->
+          <p class="reviews__card-text">{review.text}</p>
+
+          <!-- Footer -->
+          <div class="reviews__card-footer">
+            <div class="reviews__card-author">
+              <span class="reviews__card-name">{review.name}</span>
+              {review.verified && (
+                <span class="reviews__verified-badge">
+                  <svg class="reviews__verified-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  Verified
+                </span>
+              )}
+            </div>
+            <span class="reviews__card-date">{review.date}</span>
+          </div>
+
+          <!-- Helpful -->
+          <div class="reviews__card-helpful">
+            <svg class="reviews__helpful-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+            </svg>
+            <span>{review.helpful} found this helpful</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Overall Rating ---- */
+  .reviews__stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .reviews__star {
+    width: 20px;
+    height: 20px;
+    color: var(--color-hailth-gray-200);
+  }
+
+  .reviews__star--filled {
+    color: var(--color-hailth-gold);
+  }
+
+  .reviews__rating-number {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-hailth-black);
+  }
+
+  .reviews__rating-count {
+    font-size: 0.875rem;
+    color: var(--color-hailth-gray-400);
+  }
+
+  /* ---- Rating Breakdown ---- */
+  .reviews__breakdown {
+    max-width: 320px;
+    margin: 0 auto 4rem;
+  }
+
+  .reviews__bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .reviews__bar-label {
+    font-size: 0.8125rem;
+    color: var(--color-hailth-gray-400);
+    width: 3.5rem;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .reviews__bar-track {
+    flex: 1;
+    height: 6px;
+    background: var(--color-hailth-gray-100);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+  }
+
+  .reviews__bar-fill {
+    height: 100%;
+    background: var(--color-hailth-gold);
+    border-radius: var(--radius-pill);
+    transition: width 0.8s var(--ease-smooth);
+  }
+
+  .reviews__bar-pct {
+    font-size: 0.8125rem;
+    color: var(--color-hailth-gray-400);
+    width: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  /* ---- Reviews Grid ---- */
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .reviews__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reviews__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ---- Review Card ---- */
+  .reviews__card {
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-hailth-white);
+    border: 1px solid var(--color-hailth-gray-100);
+    transition: all var(--duration-normal) var(--ease-smooth);
+  }
+
+  .reviews__card:hover {
+    border-color: var(--color-hailth-gray-200);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+  }
+
+  /* Card Stars */
+  .reviews__card-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .reviews__star-sm {
+    width: 14px;
+    height: 14px;
+    color: var(--color-hailth-gray-200);
+  }
+
+  .reviews__star-sm--filled {
+    color: var(--color-hailth-gold);
+  }
+
+  /* Card Content */
+  .reviews__card-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  .reviews__card-text {
+    font-size: 0.8125rem;
+    color: var(--color-hailth-gray-400);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: none;
+  }
+
+  /* Card Footer */
+  .reviews__card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-hailth-gray-100);
+  }
+
+  .reviews__card-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .reviews__card-name {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-hailth-black);
+  }
+
+  .reviews__verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    background: rgba(52, 199, 89, 0.1);
+    color: var(--color-hailth-trust-dark);
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+
+  .reviews__verified-icon {
+    width: 10px;
+    height: 10px;
+  }
+
+  .reviews__card-date {
+    font-size: 0.6875rem;
+    color: var(--color-hailth-gray-300);
+  }
+
+  /* Helpful */
+  .reviews__card-helpful {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 0.75rem;
+    font-size: 0.6875rem;
+    color: var(--color-hailth-gray-300);
+  }
+
+  .reviews__helpful-icon {
+    width: 12px;
+    height: 12px;
+  }
+</style>

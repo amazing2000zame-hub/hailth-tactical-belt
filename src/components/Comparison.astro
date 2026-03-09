@@ -1,0 +1,256 @@
+---
+/**
+ * Comparison Section
+ * "Why HAILTH?" comparison table vs Leather, Canvas, and Ratchet belts.
+ * Clearly demonstrates HAILTH winning on comfort + adjustability.
+ */
+
+const criteria = [
+  { name: "Infinite Adjustability", hailth: true, leather: false, canvas: false, ratchet: true },
+  { name: "All-Day Comfort", hailth: true, leather: false, canvas: true, ratchet: false },
+  { name: "Airport Friendly", hailth: true, leather: false, canvas: true, ratchet: false },
+  { name: "Quick Release", hailth: true, leather: false, canvas: false, ratchet: true },
+  { name: "Lightweight (<180g)", hailth: true, leather: false, canvas: true, ratchet: false },
+  { name: "Weather Resistant", hailth: true, leather: false, canvas: false, ratchet: false },
+  { name: "No Break-In Period", hailth: true, leather: false, canvas: true, ratchet: true },
+  { name: "Professional Look", hailth: true, leather: true, canvas: false, ratchet: true },
+];
+---
+
+<section id="compare" class="section bg-hailth-gray-50">
+  <div class="container-content">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+      <h6 class="fade-in text-hailth-gold-dark !text-hailth-gold-dark">The Difference</h6>
+      <h2 class="fade-in fade-in-delay-1 mt-4">
+        Why HAILTH<br />
+        <span class="text-gradient-gold">Wins</span>
+      </h2>
+      <p class="fade-in fade-in-delay-2 mt-6 text-base lg:text-lg mx-auto">
+        We designed the belt we always wanted but could never find.
+      </p>
+    </div>
+
+    <!-- Table -->
+    <div class="comparison__table-wrap fade-in fade-in-delay-3">
+      <table class="comparison__table">
+        <thead>
+          <tr>
+            <th class="comparison__th comparison__th--feature">Feature</th>
+            <th class="comparison__th comparison__th--hailth">
+              <span class="comparison__brand-badge">HAILTH</span>
+            </th>
+            <th class="comparison__th">Leather</th>
+            <th class="comparison__th">Canvas</th>
+            <th class="comparison__th">Ratchet</th>
+          </tr>
+        </thead>
+        <tbody>
+          {criteria.map((row, idx) => (
+            <tr class={`comparison__row ${idx % 2 === 0 ? 'comparison__row--alt' : ''}`}>
+              <td class="comparison__td comparison__td--feature">{row.name}</td>
+              <td class="comparison__td comparison__td--center">
+                {row.hailth ? (
+                  <span class="comparison__check">
+                    <svg class="comparison__check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="comparison__x">
+                    <svg class="comparison__x-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                )}
+              </td>
+              <td class="comparison__td comparison__td--center">
+                {row.leather ? (
+                  <span class="comparison__check">
+                    <svg class="comparison__check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="comparison__x">
+                    <svg class="comparison__x-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                )}
+              </td>
+              <td class="comparison__td comparison__td--center">
+                {row.canvas ? (
+                  <span class="comparison__check">
+                    <svg class="comparison__check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="comparison__x">
+                    <svg class="comparison__x-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                )}
+              </td>
+              <td class="comparison__td comparison__td--center">
+                {row.ratchet ? (
+                  <span class="comparison__check">
+                    <svg class="comparison__check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="comparison__x">
+                    <svg class="comparison__x-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr class="comparison__score-row">
+            <td class="comparison__td"></td>
+            <td class="comparison__td comparison__td--center comparison__score comparison__score--winner">8/8</td>
+            <td class="comparison__td comparison__td--center comparison__score">1/8</td>
+            <td class="comparison__td comparison__td--center comparison__score">3/8</td>
+            <td class="comparison__td comparison__td--center comparison__score">3/8</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Table Wrapper ---- */
+  .comparison__table-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0.5rem;
+  }
+
+  .comparison__table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+  }
+
+  /* ---- Header ---- */
+  .comparison__th {
+    padding: 1rem 0.75rem 1.25rem;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-hailth-gray-400);
+    border-bottom: 1px solid var(--color-hailth-gray-200);
+  }
+
+  .comparison__th--feature {
+    text-align: left;
+    width: 200px;
+  }
+
+  .comparison__th--hailth {
+    text-align: center;
+  }
+
+  .comparison__brand-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--color-hailth-black);
+    color: var(--color-hailth-white);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  /* ---- Rows ---- */
+  .comparison__row {
+    border-bottom: 1px solid var(--color-hailth-gray-100);
+    transition: background var(--duration-fast) var(--ease-smooth);
+  }
+
+  .comparison__row--alt {
+    background: rgba(0, 0, 0, 0.015);
+  }
+
+  .comparison__row:hover {
+    background: rgba(200, 169, 126, 0.04);
+  }
+
+  .comparison__td {
+    padding: 1rem 0.75rem;
+  }
+
+  .comparison__td--feature {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-hailth-gray-600);
+  }
+
+  .comparison__td--center {
+    text-align: center;
+  }
+
+  /* ---- Check / X icons ---- */
+  .comparison__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(52, 199, 89, 0.12);
+  }
+
+  .comparison__check-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--color-hailth-trust-dark);
+  }
+
+  .comparison__x {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-hailth-gray-100);
+  }
+
+  .comparison__x-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--color-hailth-gray-300);
+  }
+
+  /* ---- Footer Scores ---- */
+  .comparison__score-row {
+    border-top: 1px solid var(--color-hailth-gray-200);
+  }
+
+  .comparison__score {
+    padding-top: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-hailth-gray-300);
+  }
+
+  .comparison__score--winner {
+    color: var(--color-hailth-trust-dark);
+  }
+</style>

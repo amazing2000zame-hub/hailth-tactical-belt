@@ -1,0 +1,235 @@
+---
+/**
+ * About Page
+ * Brand story, mission, and values. Text-focused, elegant layout.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Newsletter from "../components/Newsletter.astro";
+---
+
+<BaseLayout title="About Us | HAILTH" description="Learn about HAILTH -- our mission to create functional gear that looks and feels premium. Quality, comfort, and versatility in every product.">
+
+  <!-- Hero -->
+  <section class="section">
+    <div class="container-narrow">
+      <h6 class="fade-in text-hailth-gold-dark !text-hailth-gold-dark">Our Story</h6>
+      <h1 class="fade-in fade-in-delay-1 mt-4 about__hero-heading">
+        We believe everyday gear should be extraordinary.
+      </h1>
+      <div class="fade-in fade-in-delay-2 mt-8">
+        <p class="about__lead">
+          HAILTH started with a simple frustration: why does every belt on the market force you to choose between comfort and style? Between durability and looks? Between function and form?
+        </p>
+        <p class="about__lead about__lead--spaced">
+          We refused to accept those tradeoffs. So we built a belt that doesn't make you choose.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Mission -->
+  <section class="section bg-hailth-gray-50">
+    <div class="container-narrow">
+      <h2 class="fade-in about__section-title">Our Mission</h2>
+      <div class="fade-in fade-in-delay-1">
+        <p class="about__body">
+          We design functional gear that looks premium, feels invisible, and lasts for years. Every product we make is engineered to solve real problems -- not just look good on a shelf. We source military-grade materials, obsess over buckle mechanisms, and test every prototype until it performs under pressure.
+        </p>
+        <p class="about__body about__body--spaced">
+          The result is gear you reach for every single day without thinking about it. That's the highest compliment a product can earn: becoming part of your routine.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Values -->
+  <section class="section">
+    <div class="container-content">
+      <h2 class="fade-in about__section-title text-center">What We Stand For</h2>
+      <div class="about__values-grid">
+        <!-- Quality -->
+        <div class="about__value-card fade-in fade-in-delay-1">
+          <div class="about__value-icon-wrap">
+            <svg class="about__value-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+            </svg>
+          </div>
+          <h4 class="about__value-title">Quality</h4>
+          <p class="about__value-text">
+            We use the same materials trusted by military and first responders. High-density elastic polyester and nylon, zinc alloy hardware, and reinforced stitching that won't quit. Every belt is built to outlast the ones it replaces.
+          </p>
+        </div>
+
+        <!-- Comfort -->
+        <div class="about__value-card fade-in fade-in-delay-2">
+          <div class="about__value-icon-wrap">
+            <svg class="about__value-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+            </svg>
+          </div>
+          <h4 class="about__value-title">Comfort</h4>
+          <p class="about__value-text">
+            If you notice your belt during the day, it's failed. Our low-profile buckle sits flat against your body, and the elastic strap moves with you instead of against you. Zero break-in period, all-day comfort from day one.
+          </p>
+        </div>
+
+        <!-- Versatility -->
+        <div class="about__value-card fade-in fade-in-delay-3">
+          <div class="about__value-icon-wrap">
+            <svg class="about__value-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+            </svg>
+          </div>
+          <h4 class="about__value-title">Versatility</h4>
+          <p class="about__value-text">
+            One belt for the office, the trail, and the airport. The clean, minimal design pairs with dress pants and jeans alike. The airport-safe buckle means you never have to take it off. Truly one belt for everything.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Promise -->
+  <section class="section bg-hailth-gray-50">
+    <div class="container-narrow text-center">
+      <h2 class="fade-in about__section-title">Our Promise</h2>
+      <p class="fade-in fade-in-delay-1 about__body about__body--center">
+        Every HAILTH product comes with free shipping, a 30-day return window, and a 1-year warranty against manufacturing defects. We stand behind what we make because we use it every day ourselves. If it doesn't meet your expectations, we'll make it right -- no questions asked.
+      </p>
+      <div class="fade-in fade-in-delay-2 mt-10">
+        <a href="/" class="btn-gold">
+          Shop Now
+          <svg class="about__arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+
+</BaseLayout>
+
+<style>
+  /* ---- Hero ---- */
+  .about__hero-heading {
+    font-size: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+    line-height: 1.1;
+    max-width: 600px;
+  }
+
+  .about__lead {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-hailth-gray-400);
+    max-width: none;
+  }
+
+  .about__lead--spaced {
+    margin-top: 1.5rem;
+  }
+
+  /* ---- Sections ---- */
+  .about__section-title {
+    font-size: clamp(1.5rem, 3vw + 0.25rem, 2rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .about__body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-hailth-gray-400);
+    max-width: none;
+  }
+
+  .about__body--spaced {
+    margin-top: 1rem;
+  }
+
+  .about__body--center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---- Values Grid ---- */
+  .about__values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    .about__values-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .about__value-card {
+    text-align: center;
+  }
+
+  .about__value-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background: var(--color-hailth-gray-50);
+    border: 1px solid var(--color-hailth-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: all var(--duration-normal) var(--ease-smooth);
+  }
+
+  .about__value-card:hover .about__value-icon-wrap {
+    background: rgba(200, 169, 126, 0.1);
+    border-color: rgba(200, 169, 126, 0.2);
+  }
+
+  .about__value-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-hailth-gray-500);
+    transition: color var(--duration-normal) var(--ease-smooth);
+  }
+
+  .about__value-card:hover .about__value-icon {
+    color: var(--color-hailth-gold-dark);
+  }
+
+  .about__value-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    margin-bottom: 0.75rem;
+  }
+
+  .about__value-text {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--color-hailth-gray-400);
+    max-width: none;
+  }
+
+  /* ---- Arrow ---- */
+  .about__arrow {
+    width: 16px;
+    height: 16px;
+  }
+</style>
