@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CartPage from "../components/CartPage.tsx";
 ---
 
 <BaseLayout
@@ -17,7 +18,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <h1 class="cart-page__title">Your Cart</h1>
 
-      <!-- Empty state -->
+      <!-- React cart island -->
+      <div id="cart-content">
+        <CartPage client:load />
+      </div>
+
+      <!-- Empty state (shown when cart is empty via JS) -->
       <div class="cart-page__empty" id="cart-empty">
         <div class="cart-page__empty-icon">
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round">
@@ -37,11 +43,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <path d="m12 5 7 7-7 7"></path>
           </svg>
         </a>
-      </div>
-
-      <!-- Cart items (populated by JS) -->
-      <div class="cart-page__items" id="cart-items" style="display:none;">
-        <!-- Items injected here by cart JS -->
       </div>
 
       <!-- Trust row -->
@@ -68,6 +69,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // Toggle empty state based on cart content
+  function updateEmptyState() {
+    const empty = document.getElementById('cart-empty');
+    const sid = localStorage.getItem('hailth_cart_session');
+    if (!sid) {
+      if (empty) empty.style.display = '';
+      return;
+    }
+    // Check the API for cart items
+    fetch(`http://localhost:4322/api/cart/${sid}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(cart => {
+        if (empty) {
+          empty.style.display = (cart && cart.itemCount > 0) ? 'none' : '';
+        }
+      })
+      .catch(() => {
+        if (empty) empty.style.display = '';
+      });
+  }
+
+  updateEmptyState();
+  window.addEventListener('cart-updated', (e: any) => {
+    const empty = document.getElementById('cart-empty');
+    if (empty) {
+      empty.style.display = (e.detail && e.detail.itemCount > 0) ? 'none' : '';
+    }
+  });
+</script>
 
 <style>
   .cart-page {

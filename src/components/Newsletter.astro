@@ -24,7 +24,7 @@
       </p>
 
       <!-- Form -->
-      <form class="newsletter__form" action="#" method="POST">
+      <form class="newsletter__form" id="newsletter-form">
         <label for="newsletter-email" class="sr-only">Email address</label>
         <input
           type="email"
@@ -34,15 +34,18 @@
           placeholder="Enter your email"
           class="newsletter__input"
         />
-        <button type="submit" class="newsletter__btn">
+        <button type="submit" id="newsletter-btn" class="newsletter__btn">
           Subscribe
         </button>
       </form>
 
+      <!-- Status message -->
+      <p id="newsletter-status" class="newsletter__status" style="display:none;"></p>
+
       <!-- Privacy note -->
       <p class="newsletter__privacy">
         No spam, ever. Unsubscribe anytime. By subscribing you agree to our
-        <a href="#" class="newsletter__privacy-link">Privacy Policy</a>.
+        <a href="/privacy" class="newsletter__privacy-link">Privacy Policy</a>.
       </p>
     </div>
   </div>
@@ -188,6 +191,21 @@
     color: var(--color-hailth-white);
   }
 
+  .newsletter__status {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    text-align: center;
+    max-width: none;
+  }
+
+  .newsletter__status--success {
+    color: #34c759;
+  }
+
+  .newsletter__status--error {
+    color: #ff6b6b;
+  }
+
   /* Screen reader only */
   .sr-only {
     position: absolute;
@@ -201,3 +219,40 @@
     border: 0;
   }
 </style>
+
+<script>
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  const statusEl = document.getElementById('newsletter-status') as HTMLParagraphElement;
+  const btn = document.getElementById('newsletter-btn') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (form.querySelector('input[name="email"]') as HTMLInputElement)?.value;
+    if (!email) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Subscribing...';
+    statusEl.style.display = 'none';
+
+    try {
+      const res = await fetch('http://localhost:4322/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const body = await res.json();
+      statusEl.textContent = body.message || 'Subscribed successfully!';
+      statusEl.className = 'newsletter__status newsletter__status--success';
+      statusEl.style.display = '';
+      form.reset();
+    } catch {
+      statusEl.textContent = 'Something went wrong. Please try again.';
+      statusEl.className = 'newsletter__status newsletter__status--error';
+      statusEl.style.display = '';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+    }
+  });
+</script>

@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Terms of Service | HAILTH"
+  description="HAILTH terms of service. Review our terms and conditions for using our website and purchasing products."
+>
+  <section class="policy-page">
+    <div class="container-narrow">
+      <nav class="policy-page__breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Terms of Service</span>
+      </nav>
+
+      <h1 class="policy-page__title">Terms of Service</h1>
+      <p class="policy-page__updated">Last updated: March 9, 2026</p>
+
+      <div class="policy-page__content">
+        <h2>1. Agreement to Terms</h2>
+        <p>By accessing or using the HAILTH website and purchasing our products, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our services.</p>
+
+        <h2>2. Products & Orders</h2>
+        <ul>
+          <li><strong>Pricing:</strong> All prices are listed in USD and include applicable taxes where required. Prices are subject to change without notice.</li>
+          <li><strong>Availability:</strong> We strive to maintain accurate stock levels, but items may occasionally sell out. We reserve the right to limit quantities.</li>
+          <li><strong>Order Confirmation:</strong> An order confirmation email does not guarantee shipment. We reserve the right to cancel orders due to pricing errors, suspected fraud, or stock issues.</li>
+        </ul>
+
+        <h2>3. Shipping & Delivery</h2>
+        <ul>
+          <li>Standard shipping is free on all orders.</li>
+          <li>Estimated delivery times are 7-15 business days for standard and 3-5 business days for express shipping.</li>
+          <li>Delivery times are estimates, not guarantees. HAILTH is not responsible for delays caused by carriers, customs, or events beyond our control.</li>
+        </ul>
+
+        <h2>4. Returns & Refunds</h2>
+        <ul>
+          <li>We offer a 30-day return window from the date of delivery.</li>
+          <li>Items must be unused, unworn, and in original packaging to qualify for a return.</li>
+          <li>Refunds are processed to the original payment method within 5-10 business days of receiving the return.</li>
+          <li>Return shipping costs are the responsibility of the customer unless the item is defective.</li>
+        </ul>
+
+        <h2>5. Warranty</h2>
+        <p>All HAILTH products come with a 1-year warranty against manufacturing defects. This warranty covers defects in materials and workmanship under normal use. It does not cover damage from misuse, alteration, or normal wear and tear.</p>
+
+        <h2>6. Intellectual Property</h2>
+        <p>All content on this website, including text, images, logos, and design, is the property of HAILTH and is protected by copyright and trademark laws. You may not reproduce, distribute, or use any content without our written permission.</p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>HAILTH is not liable for any indirect, incidental, or consequential damages arising from the use of our products or website. Our maximum liability is limited to the purchase price of the product in question.</p>
+
+        <h2>8. Governing Law</h2>
+        <p>These terms are governed by and construed in accordance with applicable laws. Any disputes will be resolved through good-faith negotiation first.</p>
+
+        <h2>9. Contact</h2>
+        <p>For questions about these terms, contact us at:</p>
+        <p><strong>Email:</strong> support@hailth.com</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .policy-page {
+    padding: 2rem 0 6rem;
+  }
+
+  .policy-page__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-hailth-gray-300);
+    margin-bottom: 2rem;
+  }
+
+  .policy-page__breadcrumb a {
+    color: var(--color-hailth-gray-300);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .policy-page__breadcrumb a:hover {
+    color: var(--color-hailth-gray-500);
+  }
+
+  .policy-page__breadcrumb span:last-child {
+    color: var(--color-hailth-gray-500);
+  }
+
+  .policy-page__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-page__updated {
+    font-size: 0.8125rem;
+    color: var(--color-hailth-gray-300);
+    margin-bottom: 3rem;
+  }
+
+  .policy-page__content h2 {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-hailth-black);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .policy-page__content p {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: var(--color-hailth-gray-400);
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+
+  .policy-page__content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .policy-page__content li {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: var(--color-hailth-gray-400);
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-page__content li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-hailth-gray-200);
+  }
+
+  .policy-page__content strong {
+    color: var(--color-hailth-gray-500);
+    font-weight: 600;
+  }
+</style>

@@ -67,7 +67,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <!-- Right: Form -->
         <div class="contact__form-wrap fade-in fade-in-delay-2">
-          <form action="#" method="POST" class="contact__form">
+          <form id="contact-form" class="contact__form">
             <!-- Name -->
             <div class="contact__field">
               <label for="contact-name" class="contact__label">Name</label>
@@ -120,8 +120,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               ></textarea>
             </div>
 
+            <!-- Status message -->
+            <div id="contact-status" class="contact__status" style="display:none;"></div>
+
             <!-- Submit -->
-            <button type="submit" class="contact__submit btn-primary">
+            <button type="submit" id="contact-submit" class="contact__submit btn-primary">
               Send Message
             </button>
 
@@ -290,4 +293,67 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     text-align: center;
     max-width: none;
   }
+
+  .contact__status {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .contact__status--success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #16a34a;
+  }
+
+  .contact__status--error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+  }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('contact-status') as HTMLDivElement;
+  const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    status.style.display = 'none';
+
+    try {
+      const res = await fetch('http://localhost:4322/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          subject: data.get('subject'),
+          message: data.get('message'),
+        }),
+      });
+
+      if (res.ok) {
+        status.textContent = 'Message sent! We\'ll get back to you within 24 hours.';
+        status.className = 'contact__status contact__status--success';
+        status.style.display = '';
+        form.reset();
+      } else {
+        const body = await res.json().catch(() => ({ error: 'Failed to send' }));
+        throw new Error(body.error);
+      }
+    } catch (err: any) {
+      status.textContent = err.message || 'Something went wrong. Please try again.';
+      status.className = 'contact__status contact__status--error';
+      status.style.display = '';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+</script>

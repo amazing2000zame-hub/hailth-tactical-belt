@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getProducts, type Product, type ProductVariant } from "../lib/api";
+import { addToCart } from "../lib/cart";
 
 interface ColorOption {
   name: string;
@@ -11,7 +13,25 @@ interface SizeOption {
   range: string;
 }
 
-const COLORS: ColorOption[] = [
+const COLOR_HEX: Record<string, string> = {
+  Black: "#1a1a1a",
+  "Army Green": "#4a5d23",
+  Khaki: "#c3b091",
+  Brown: "#654321",
+  Navy: "#1b2a4a",
+  Gray: "#6b7280",
+  Camo: "#556b2f",
+};
+
+const SIZE_RANGES: Record<string, string> = {
+  S: '28"-32"',
+  M: '32"-36"',
+  L: '36"-40"',
+  XL: '40"-44"',
+  "2XL": '44"-50"',
+};
+
+const FALLBACK_COLORS: ColorOption[] = [
   { name: "Black", hex: "#1a1a1a" },
   { name: "Army Green", hex: "#4a5d23" },
   { name: "Khaki", hex: "#c3b091" },
@@ -21,7 +41,7 @@ const COLORS: ColorOption[] = [
   { name: "Camo", hex: "#556b2f", pattern: true },
 ];
 
-const SIZES: SizeOption[] = [
+const FALLBACK_SIZES: SizeOption[] = [
   { label: "S", range: '28"-32"' },
   { label: "M", range: '32"-36"' },
   { label: "L", range: '36"-40"' },
@@ -29,19 +49,84 @@ const SIZES: SizeOption[] = [
   { label: "2XL", range: '44"-50"' },
 ];
 
-const PRICE = 29.99;
-
 export default function ProductSelector() {
+  const [product, setProduct] = useState<Product | null>(null);
+  const [colors, setColors] = useState<ColorOption[]>(FALLBACK_COLORS);
+  const [sizes, setSizes] = useState<SizeOption[]>(FALLBACK_SIZES);
   const [selectedColor, setSelectedColor] = useState<string>("Black");
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(1);
   const [showSizeGuide, setShowSizeGuide] = useState<boolean>(false);
+  const [adding, setAdding] = useState(false);
+  const [addedMessage, setAddedMessage] = useState("");
+  const [price, setPrice] = useState(29.99);
+
+  useEffect(() => {
+    getProducts()
+      .then((products) => {
+        if (products.length > 0) {
+          const p = products[0];
+          setProduct(p);
+          setPrice(p.price);
+          if (p.colors.length > 0) {
+            setColors(
+              p.colors.map((c) => ({
+                name: c,
+                hex: COLOR_HEX[c] || "#999",
+                pattern: c === "Camo",
+              }))
+            );
+          }
+          if (p.sizes.length > 0) {
+            setSizes(
+              p.sizes.map((s) => ({
+                label: s,
+                range: SIZE_RANGES[s] || "",
+              }))
+            );
+          }
+        }
+      })
+      .catch(() => {
+        // Use fallback data
+      });
+  }, []);
 
   const handleQuantityChange = (delta: number) => {
     setQuantity((prev) => Math.max(1, Math.min(10, prev + delta)));
   };
 
-  const totalPrice = (PRICE * quantity).toFixed(2);
+  const totalPrice = (price * quantity).toFixed(2);
+
+  const findVariantId = (): number | null => {
+    if (!product) return null;
+    const variant = product.variants.find(
+      (v) => v.color === selectedColor && v.size === selectedSize
+    );
+    return variant ? variant.id : null;
+  };
+
+  const handleAddToCart = async () => {
+    setAdding(true);
+    setAddedMessage("");
+    try {
+      const variantId = findVariantId();
+      if (!variantId) {
+        // If no product loaded, try a simple approach
+        setAddedMessage("Unable to add - please try again");
+        setAdding(false);
+        return;
+      }
+      await addToCart(variantId, quantity);
+      setAddedMessage("Added to cart!");
+      setTimeout(() => setAddedMessage(""), 2500);
+    } catch (err) {
+      setAddedMessage("Error adding to cart");
+      setTimeout(() => setAddedMessage(""), 2500);
+    } finally {
+      setAdding(false);
+    }
+  };
 
   return (
     <div className="space-y-8">
@@ -54,7 +139,7 @@ export default function ProductSelector() {
           <span className="text-sm text-neutral-500">{selectedColor}</span>
         </div>
         <div className="flex flex-wrap gap-3">
-          {COLORS.map((color) => (
+          {colors.map((color) => (
             <button
               key={color.name}
               onClick={() => setSelectedColor(color.name)}
@@ -130,7 +215,7 @@ export default function ProductSelector() {
           </button>
         </div>
         <div className="flex flex-wrap gap-2">
-          {SIZES.map((size) => (
+          {sizes.map((size) => (
             <button
               key={size.label}
               onClick={() => setSelectedSize(size.label)}
@@ -183,7 +268,7 @@ export default function ProductSelector() {
               your belt.
             </p>
             <div className="space-y-1.5">
-              {SIZES.map((size) => (
+              {sizes.map((size) => (
                 <div
                   key={size.label}
                   className={`flex items-center justify-between py-1.5 px-3 rounded-lg text-xs ${
@@ -258,10 +343,20 @@ export default function ProductSelector() {
       {/* Add to Cart Button */}
       <div className="pt-2">
         <button
-          className="w-full py-4 px-8 bg-[#c8a97e] text-[#0a0a0a] text-sm font-bold uppercase tracking-widest rounded-full transition-all duration-300 hover:bg-[#b8956a] hover:shadow-[0_4px_24px_rgba(200,169,126,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none"
+          onClick={handleAddToCart}
+          disabled={adding}
+          className={`w-full py-4 px-8 text-sm font-bold uppercase tracking-widest rounded-full transition-all duration-300 ${
+            addedMessage === "Added to cart!"
+              ? "bg-[#34c759] text-white"
+              : "bg-[#c8a97e] text-[#0a0a0a] hover:bg-[#b8956a] hover:shadow-[0_4px_24px_rgba(200,169,126,0.3)] hover:-translate-y-0.5"
+          } active:translate-y-0 active:shadow-none disabled:opacity-70 disabled:cursor-not-allowed`}
           aria-label={`Add to cart - $${totalPrice}`}
         >
-          Add to Cart &mdash; ${totalPrice}
+          {adding
+            ? "Adding..."
+            : addedMessage
+              ? addedMessage
+              : `Add to Cart \u2014 $${totalPrice}`}
         </button>
 
         {/* Trust indicators */}

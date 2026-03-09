@@ -361,3 +361,34 @@
     margin: 1.5rem 0;
   }
 </style>
+
+<script>
+  function updateCartBadge(count: number) {
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+    if (count > 0) {
+      badge.textContent = String(count);
+      badge.style.display = '';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+
+  function loadCartCount() {
+    const sid = localStorage.getItem('hailth_cart_session');
+    if (!sid) {
+      updateCartBadge(0);
+      return;
+    }
+    fetch(`http://localhost:4322/api/cart/${sid}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(cart => updateCartBadge(cart ? cart.itemCount : 0))
+      .catch(() => updateCartBadge(0));
+  }
+
+  loadCartCount();
+
+  window.addEventListener('cart-updated', (e: any) => {
+    updateCartBadge(e.detail?.itemCount ?? 0);
+  });
+</script>
